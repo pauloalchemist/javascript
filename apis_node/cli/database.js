@@ -47,6 +47,25 @@ class Database {
 		dados.splice(indice, 1);
 		return await this.escreverArquivo(dados);
 	};
+	async atualizar(id, modificacoes) {
+		const dados = await this.obterArquivo();
+		const indice = dados.findIndex(item => item.id === parseInt(id));
+		if(indice === -1){
+			throw Error('O heroi informado não existe');
+		};
+		const atual = dados[indice];
+		const objAtualizar = {
+			...atual,
+			...modificacoes
+		};
+		dados.splice(indice, 1);
+
+		return await this.escreverArquivo([
+			...dados,
+			objAtualizar
+		]);
+
+	};
 };
 
 module.exports = new Database();

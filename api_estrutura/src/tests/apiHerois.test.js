@@ -61,7 +61,7 @@ describe('Suite de testes API Herois', function () {
         assert.deepEqual(result.payload, JSON.stringify(errorResult)); 
     });
     it('Listar - deve filtrar um item.', async () => {
-        const NAME = 'Batman';
+        const NAME = MOCK_INIT.nome;
         const result = await app.inject({
             method: 'GET',
             url: `/herois?skip=0&limit=1000&nome=${NAME}`

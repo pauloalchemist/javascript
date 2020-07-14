@@ -17,9 +17,9 @@ async function main() {
     const connection = MongoDb.connect(); 
     const context = new Context(new MongoDb(connection, HeroiSchema));
     app.validator(Joi);
-    app.route(
+    app.route([
         ...mapRoutes(new HeroRoutes(context), HeroRoutes.methods())
-    );
+    ]);
 
     await app.start();
     console.log('Servidor rodando na porta:', app.info.port);

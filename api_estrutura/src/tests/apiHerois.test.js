@@ -6,10 +6,22 @@ const MOCK_CADASTRAR = {
     nome: 'Chapolin',
     poder: 'marreta'
 };
+const MOCK_INIT = {
+    nome: 'HellBoy',
+    poder:'mão de pedra'
+};
+let MOCK_ID = '';
 
-describe.only('Suite de testes API Herois', function () {
+describe('Suite de testes API Herois', function () {
     this.beforeAll(async () => {
-        app = await api; 
+        app = await api;
+        const result = await app.inject({
+            method: 'POST',
+            url: '/herois',
+            payload: MOCK_INIT
+        });
+        const dados = JSON.parse(result.payload);
+        MOCK_ID = dados._id; 
     });
     it('Listar - rota /herois', async () => {
         const result = await app.inject({
@@ -70,6 +82,34 @@ describe.only('Suite de testes API Herois', function () {
         assert.ok(statusCode === 200);
         assert.notStrictEqual(_id, undefined);
         assert.deepEqual(message, 'Heroi cadastrado com sucesso!');
+    });
+    it('Atualizar PATCH - /herois/:id', async () => {
+        const _id = MOCK_ID;
+        const expected = { poder: 'super força' };
+        const result = await app.inject({
+            method: 'PATCH',
+            url: `/herois/${_id}`,
+            payload: JSON.stringify(expected)
+        });
+
+        const statusCode = result.statusCode;
+        const dados = JSON.parse(result.payload);
+        assert.ok(statusCode === 200);
+        assert.deepEqual(dados.message, 'Heroi atualizado com sucesso!');
+    });
+    it('Atualizar PATCH - não atualizar com ID incorreto', async () => {
+        const _id = `5f0897f3c1ab3c20263110f9`; //id alterado para teste
+        const expected = { poder: 'super força' };
+        const result = await app.inject({
+            method: 'PATCH',
+            url: `/herois/${_id}`,
+            payload: JSON.stringify(expected)
+        });
+
+        const statusCode = result.statusCode;
+        const dados = JSON.parse(result.payload);
+        assert.ok(statusCode === 200);
+        assert.deepEqual(dados.message, 'Não foi possível atualiar');
     });
     
 });

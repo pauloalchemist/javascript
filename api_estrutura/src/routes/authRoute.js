@@ -3,20 +3,18 @@ const Joi = require('@hapi/joi');
 const Boom = require('@hapi/boom');
 const failAction = (request, headers, erro) => { throw erro; };
 const JWT = require('jsonwebtoken');
+const PasseordHelper = require('../helpers/passwordHelper');
 
-const USER = {
+/*const USER = {
     username: 'platão',
-    password: '12345'
-};
-
-const headers = Joi.object({
-    authoeization: Joi.string().required()
-}).unknown();
+    password: '123'
+};*/
 
 class AuthRoute extends BaseRoute {
-    constructor(secret) {
+    constructor(secret, db) {
         super();
-        this.secret = secret
+        this.secret = secret,
+        this.db = db
     };
 
     login() {
@@ -38,12 +36,22 @@ class AuthRoute extends BaseRoute {
             },
             handler: async (request) => {
                 const { username, password } = request.payload;
-                if (username.toLowerCase() !== USER.username || password !== USER.password)
-                    return Boom.unauthorized();
+                const [usuario] = await this.db.read({
+                    username: username.toLowerCase()
+                });
+                if(!usuario) {
+                    return Boom.unauthorized('Usuário informado não eiste.'); 
+                };
+                const math = await PasseordHelper.comparePassword(password, usuario.password);
+                if(!math) {
+                    return Boom.unauthorized('Usuário ou senha invalidos.');
+                };
+               // if (username.toLowerCase() !== USER.username || password !== USER.password)
+                    //return Boom.unauthorized();
                 
                 const token = JWT.sign({
                     username: username,
-                    id:1
+                    id:usuario.id
                 }, this.secret);
                 return {
                     token

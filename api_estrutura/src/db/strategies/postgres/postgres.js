@@ -30,27 +30,26 @@ class Postgres extends ICrud {
     async read(item = {}) {
         return this._schema.findAll({where: item, raw: true}); 
     };
-    async update(id, item) {
-        return this._schema.update(item, { where: {id: id} });
+    async update(id, item, upsert = false) {
+        const fn = upsert ? 'upsert' : 'update';
+
+        return this._schema[fn](item, { where: {id: id} });
     };
     async delete(id) {
         const query = id ? { id } : {};
         return this._schema.destroy({where: query});
     };
     static connect() {
-        const connection = new Sequelize(
-            'herois',
-            'postgres',
-            'docker',
-            {
-                host: 'localhost',
-                dialect: 'postgres',
+        const connection = new Sequelize(process.env.POSTGRES_URL, {
                 quoteIdentifiers: false,
                 operatorAliases: false,
-                logging: false
-            }
-        
-        ); 
+                logging: false,
+                ssl: process.env.SSL_DB,
+                dialectOptions: {
+                    ssl: process.env.SSL_DB
+                }
+            }); 
+
         return connection;           
     };
 };

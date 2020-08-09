@@ -1,36 +1,53 @@
 import React from 'react';
 import whatsAppIcon from '../../assets/images/icons/whatsapp.svg';
+import api from '../../services/api';
 
 import './styles.css';
 
-function TeacherItem() {
+export interface Teacher {
+    avatar: string;
+    bio: string;
+    cost: number;
+    id: number;
+    name: string;
+    subject: string;
+    whatsapp: string;
+};
+interface TeacherItemProps {
+    teacher: Teacher; 
+};
+
+const TeacherItem: React.FC<TeacherItemProps> = ({teacher}) => {
+    function createNewConnection() {
+        api.post('connections', {
+            user_id: teacher.id
+        })
+    };
+
     return (
         <article className="teacher-item">
             <header>
-                <img src="https://avatars3.githubusercontent.com/u/64275070?s=460&u=982ae5886f18e579b6d375d940016b6ed4599927&v=4" alt="Paulo Lins" />
+                <img src={teacher.avatar} alt={teacher.name} />
                 <div>
-                    <strong>Paulo Lins</strong>
-                    <span>Filosofia</span>
+                    <strong>{teacher.name}</strong>
+                    <span>{teacher.subject}</span>
                 </div>
             </header>
 
-            <p>
-                Entusiasta da filosofia de Hannah Arendt, Aristotéles
-                e Ludwig Wittgenstein. E também curioso pelo mundo das tecnologias.
-                        <br /><br />
-                        Já gerou centenas de hipoteses, questionamentos e soluções que mudaram, para melhor, a realidade
-                        de várias pessoas e organizações.
-                    </p>
+            <p> {teacher.bio} </p>
 
             <footer>
                 <p>
                     Preço/hora:
-                            <strong>R$ 70,00</strong>
+                    <strong>R$ {teacher.cost}</strong>
                 </p>
-                <button type="button">
+                <a 
+                    target="_blank" 
+                    onClick={createNewConnection} 
+                    href={`https://wa.me/${teacher.whatsapp}`}>
                     <img src={whatsAppIcon} alt="Whatsapp" />
                             Entrar em contato
-                        </button>
+                </a>
             </footer>
         </article>
     );

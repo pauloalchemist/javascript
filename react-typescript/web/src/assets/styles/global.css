@@ -40,6 +40,10 @@ body {
     justify-content: center;
 }
 
+a {
+    text-decoration: none;
+}
+
 body,
 input,
 button,

@@ -1,0 +1,22 @@
+{
+  "name": "solid_api",
+  "version": "1.0.0",
+  "description": "Estudo da métodologia solid em API Rest",
+  "main": "src/server.ts",
+  "author": "Paulo Lins paulolinsdev@gmail.com",
+  "license": "MIT",
+  "scripts": {
+    "start": "tsnd --transpile-only --respawn --ignore-watch node_modules src/server.ts"
+  },
+  "dependencies": {
+    "express": "^4.17.1",
+    "nodemailer": "^6.4.11",
+    "uuidv4": "^6.2.2"
+  },
+  "devDependencies": {
+    "@types/express": "^4.17.7",
+    "@types/nodemailer": "^6.4.0",
+    "ts-node-dev": "^1.0.0-pre.56",
+    "typerscript": "^0.2.3"
+  }
+}

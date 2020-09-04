@@ -1,6 +1,12 @@
-const User = require("../models/User");
+const User = require('../models/User');
 
 module.exports = {
+  async listAll(req, res) {
+    const users = await User.findAll();
+
+    return res.json(users);
+  },
+
   async store(req, res) {
     const { name, email } = req.body;
 

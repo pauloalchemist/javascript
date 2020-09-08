@@ -1,0 +1,29 @@
+{
+	"name": "sql_node_postgres",
+	"version": "1.0.0",
+	"description": "Aplicação CRUD com NodeJs e Postgresql",
+	"main": "index.js",
+	"scripts": {
+		"start": "nodemon server.js"
+	},
+	"keywords": [
+		"nodejs",
+		"sql",
+		"postgres",
+		"express",
+		"javascript"
+	],
+	"author": "Paulo Giovani < paulolinsdev@gmail.com >",
+	"license": "ISC",
+	"homepage": "https://github.com/pauloalchemist",
+	"devDependencies": {
+		"nodemon": "^2.0.4"
+	},
+	"dependencies": {
+		"cors": "^2.8.5",
+		"dotenv": "^8.2.0",
+		"express": "^4.17.1",
+		"express-promise-router": "^4.0.1",
+		"pg": "^8.3.3"
+	}
+}

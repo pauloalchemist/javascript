@@ -7,3 +7,7 @@ exports.getPost = () => {
 exports.savePost = (post) => {
   return postData.savePost(post)
 }
+
+exports.deletePost = (id) => {
+  return postData.deletePost(id)
+}

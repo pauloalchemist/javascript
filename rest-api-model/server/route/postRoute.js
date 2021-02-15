@@ -5,9 +5,11 @@ router.get('/posts', async function (req, res) {
   const posts = await postService.getPost()
   res.json(posts)
 })
-router.get('/posts/:id')
-router.post('/posts')
-router.put('/posts/:id')
-router.delete('posts/:id')
+
+router.post('/posts', async function (req, res) {
+  const post = req.body
+  const newPost = await postService.savePost(post)
+  res.json(newPost)
+})
 
 module.exports = router

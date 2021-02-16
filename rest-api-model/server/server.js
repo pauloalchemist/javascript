@@ -4,5 +4,6 @@ const app = express()
 
 app.use(express.json())
 app.use(router)
+app.disable('x-powered-by')
 
 app.listen(3000)

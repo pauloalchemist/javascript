@@ -1,10 +1,11 @@
+require('dotenv').config()
 const pgp = require('pg-promise')()
 const db = pgp({
-  user: 'postgres',
-  password: '',
-  host: 'localhost',
-  port: 5432,
-  database: 'javascript'
+  user: process.env.USERDB,
+  password: process.env.PASS,
+  host: process.env.DBHOST,
+  port: process.env.DBPORT,
+  database: process.env.DB
 })
 
 module.exports = db

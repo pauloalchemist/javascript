@@ -8,7 +8,10 @@
   "main": "index.js",
   "scripts": {
     "dev": "nodemon server/server.js",
-    "test": "jest --env node --detectOpenHandles"
+    "test": "jest --noStackTrace --passWithNoTests --detectOpenHandles --runInBand",
+    "test:unit": "npm test -- --watch",
+    "test:staged": "npm test -- --findRelatedTests --silent",
+    "test:ci": "npm test -- --coverage --silent"
   },
   "standard": {
     "env": [

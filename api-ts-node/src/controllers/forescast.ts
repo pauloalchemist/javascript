@@ -1,4 +1,5 @@
 import { Controller, Get } from '@overnightjs/core'
+import { Request } from 'express'
 import { Response } from 'express/lib/response'
 
 @Controller('forecast')

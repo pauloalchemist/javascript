@@ -8,11 +8,11 @@ describe('StormGlass client', () => {
   it('Should return the normalized forecast from the StormGlass service', async () => {
     const lat = -12.9249836
     const lng = -38.345232
-    
-    axios.get = jest.fn().mockResolvedValue(stormGlassWeather3HoursFixture)
+
+    axios.get = jest.fn().mockResolvedValue({ data: stormGlassWeather3HoursFixture })
 
     const stormGlass = new StormGlass(axios)
     const response = await stormGlass.fetchPoints(lat, lng)
-    expect(response).toEqual({})
+    expect(response).toEqual(stormGlassWeather3HoursFixture)
   })
 })

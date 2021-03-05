@@ -1,10 +1,10 @@
 const assert = require('assert');
 const api = require('../api');
 
+
 let app = {};
 
 const TOKEN = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ1c2VybmFtZSI6InBsYXTDo28iLCJpZCI6MSwiaWF0IjoxNTk0NzU0OTU5fQ.zCyBgtfED6aJswIVPbxzcThgRttO3IpRs0qgKZIL94Q';
-
 const headers = {
     authorization: TOKEN
 };

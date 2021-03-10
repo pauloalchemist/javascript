@@ -1,11 +1,11 @@
-import { AxiosStatic } from 'axios'
+import axios, { AxiosStatic } from 'axios'
 
 export interface StormGlassPointSource {
   [key: string]: number
 }
 
 export interface StormGlassPoint {
-  readonly time: string
+  time: string
   readonly waveHeight: StormGlassPointSource
   readonly waveDirection: StormGlassPointSource
   readonly windDirectiond: StormGlassPointSource
@@ -36,11 +36,11 @@ export class StormGlass {
 
   readonly stormGlassAPISource = 'noaa'
 
-  constructor (protected request: AxiosStatic) {}
+  constructor (protected request: AxiosStatic = axios) {}
 
   public async fetchPoints (lat: number, lng: number): Promise<ForecastPoint[]> {
     const response = await this.request.get<StormGlassForecastResponse>(
-      `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${this.stormGlassParams}&source=${this.stormGlassAPISource}&end=1614568440`,
+      `https://api.stormglass.io/v2/weather/point?lat=${lat}&lng=${lng}&params=${this.stormGlassParams}&source=${this.stormGlassAPISource}`,
       {
         headers: {
           Authorization: process.env.API_KEY

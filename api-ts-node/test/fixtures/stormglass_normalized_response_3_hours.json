@@ -1,0 +1,28 @@
+[{
+  "swellDirection": 134.54,
+  "swellHeight": 0.3,
+  "swellPeriod": 7.86,
+  "time": "2021-02-28T00:00:00+00:00",
+  "waveDirection": 111.08,
+  "waveHeight": 1.22,
+  "windDirection": 109.26,
+  "windSpeed": 5.07
+ }, {
+  "swellDirection": 126.64,
+  "swellHeight": 0.58,
+  "swellPeriod": 7.7,
+  "time": "2021-02-28T01:00:00+00:00",
+  "waveDirection": 111.21,
+  "waveHeight": 1.2,
+  "windDirection": 106.42,
+  "windSpeed": 4.76
+ }, {
+  "swellDirection": 118.74,
+  "swellHeight": 0.85,
+  "swellPeriod": 7.55,
+  "time": "2021-02-28T02:00:00+00:00",
+  "waveDirection": 111.34,
+  "waveHeight": 1.18,
+  "windDirection": 103.59,
+  "windSpeed": 4.45
+}]

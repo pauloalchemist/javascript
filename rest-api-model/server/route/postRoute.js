@@ -14,8 +14,12 @@ router.post('/posts', async function (req, res) {
 
 router.put('/posts/:id', async function (req, res) {
   const post = req.body
-  await postService.updatePost(req.params.id, post)
-  res.status(204).end()
+  try {
+    await postService.updatePost(req.params.id, post)
+    res.status(204).end()
+  } catch (e) {
+    res.status(404).send(e.message)
+  }
 })
 
 router.delete('/posts/:id', async function (req, res) {

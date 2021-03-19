@@ -7,7 +7,7 @@ const generate = () => {
 }
 
 const request = function (url, method, data) {
-  return axios({ url, method, data })
+  return axios({ url, method, data, validateStatus: false })
 }
 
 test('Should get posts', async function () {
@@ -43,6 +43,12 @@ test('Should update a post', async function () {
   expect(updatedPost.title).toBe(post.title)
   expect(updatedPost.content).toBe(post.content)
   await postsService.deletePost(post.id)
+})
+
+test('Should not update a post', async function () {
+  const post = { id: 1 }
+  const response = await request(`http://localhost:3000/posts/${post.id}`, 'put', post)
+  expect(response.status).toBe(404)
 })
 
 test('Should delete a post', async function () {

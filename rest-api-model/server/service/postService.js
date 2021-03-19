@@ -11,7 +11,9 @@ exports.getPost = async (id) => {
   return post
 }
 
-exports.savePost = (post) => {
+exports.savePost = async (post) => {
+  const existingPost = await postData.getPostByTitle(post.title)
+  if (existingPost) throw new Error('Post already existis')
   return postData.savePost(post)
 }
 

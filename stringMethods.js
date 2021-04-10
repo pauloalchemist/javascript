@@ -10,7 +10,12 @@ console.log(stringOne.concat(' ', stringTwo))
 console.log(stringOne.endsWith('.'))
 console.log(stringTwo.endsWith('dia.'))
 
-const regex = /[A-Z]/g
+const regex = /[^A-Z]/g
 console.log(stringOne.match(regex))
 
 console.log(stringOne.toLowerCase())
+
+const email = 'paulolinsdev@gmail.com'
+const isEmail = /^[a-zA-Z0-9.!#$%&'*+/=?^_`{|}~-]+@[a-zA-Z0-9-]+(?:\.[a-zA-Z0-9-]+)*$/
+const result = isEmail.test(email)
+console.log('E o email é: ', result)

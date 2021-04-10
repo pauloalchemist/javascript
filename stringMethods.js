@@ -13,4 +13,4 @@ console.log(stringTwo.endsWith('dia.'))
 const regex = /[A-Z]/g
 console.log(stringOne.match(regex))
 
-
+console.log(stringOne.toLowerCase())

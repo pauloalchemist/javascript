@@ -1,3 +1,4 @@
+:q
 {
   "hours": [
     {
@@ -617,9 +618,8 @@
       "windSpeed"
     ],
     "requestCount": 16,
-    "source": [
-      "noaa"
-    ],
+    "source": ["noaa"],
     "start": "2021-02-28 00:00"
   }
 }
+
